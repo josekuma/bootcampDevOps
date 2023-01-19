@@ -2,6 +2,7 @@
 
 ## Solución
 ```shell
-$ file1>> file2.txt
+$ cd dummy
+$ cat file1.txt>> file2.txt
 $ mv file2.txt ../empty
 ```
