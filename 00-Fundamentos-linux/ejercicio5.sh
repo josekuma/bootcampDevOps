@@ -10,19 +10,19 @@ fi
     LINEA=$(echo $TEXTO | grep -n $PALABRA| head -c 1)
     echo $TEXTO
 
-    if [ $VECES -eq 0 ]
-        then
-        echo "La palabra $PALABRA no aparece nunca" 
-        exit 1
-    fi
-
-    if [ $VECES -eq 1 ]
-        then
-            echo "La palabra $PALABRA solo aparece una vez"
-            echo "Aparece unicamente en la línea $LINEA"
-            exit 1
+           if [ $VECES -eq 0 ]
+            then
+                echo "La palabra $PALABRA no aparece nunca" 
+                
+          
+            elif [ $VECES -eq 1 ]
+                then
+                    echo "La palabra $PALABRA aparece solo una vez"
+                    echo "Aparece unicamente en la línea $LINEA"
+                   
+            else
+            echo "La palabra $PALABRA aparece $VECES veces"
+            echo "Aparece por primera vez en la línea $LINEA"
+            
         fi
-    echo "La palabra $PALABRA aparece $VECES veces"    
-    echo "Aparece por primera vez en la línea $LINEA"
-    exit 1
     

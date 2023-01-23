@@ -2,7 +2,7 @@
 
 if [ $# -ne 1 ]
     then
-        echo "Se necesitan únicamente dos parámetros para ejecutar este script">&2
+        echo "Se necesitan únicamente un parámetro para ejecutar este script">&2
         exit 1
     fi 
         TEXTO=$(curl -s http://metaphorpsum.com/paragraphs/2/4)
@@ -13,15 +13,15 @@ if [ $# -ne 1 ]
            if [ $VECES -eq 0 ]
             then
                 echo "La palabra $PALABRA no aparece nunca" 
-                exit 1
-          fi
-            if [ $VECES -eq 1 ]
+                
+          
+            elif [ $VECES -eq 1 ]
                 then
                     echo "La palabra $PALABRA aparece solo una vez"
                     echo "Aparece unicamente en la línea $LINEA"
-                    exit 1
-            fi
-
-        echo "La palabra $PALABRA aparece $VECES veces"
-        echo "Aparece por primera vez en la línea $LINEA"
-        exit 1
+                   
+            else
+            echo "La palabra $PALABRA aparece $VECES veces"
+            echo "Aparece por primera vez en la línea $LINEA"
+            
+        fi
