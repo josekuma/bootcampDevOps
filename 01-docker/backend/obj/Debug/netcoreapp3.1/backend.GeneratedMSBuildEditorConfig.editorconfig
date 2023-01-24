@@ -1,0 +1,3 @@
+is_global = true
+build_property.RootNamespace = backend
+build_property.ProjectDir = /home/josek/Desktop/proyectos/ejercicios/01-containers/lemoncode-challenge/dotnet-stack/backend/

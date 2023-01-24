@@ -1,0 +1,75 @@
+{
+  "format": 1,
+  "restore": {
+    "/home/josek/Desktop/proyectos/ejercicios/01-containers/lemoncode-challenge/dotnet-stack/backend/backend.csproj": {}
+  },
+  "projects": {
+    "/home/josek/Desktop/proyectos/ejercicios/01-containers/lemoncode-challenge/dotnet-stack/backend/backend.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/josek/Desktop/proyectos/ejercicios/01-containers/lemoncode-challenge/dotnet-stack/backend/backend.csproj",
+        "projectName": "backend",
+        "projectPath": "/home/josek/Desktop/proyectos/ejercicios/01-containers/lemoncode-challenge/dotnet-stack/backend/backend.csproj",
+        "packagesPath": "/home/josek/.nuget/packages/",
+        "outputPath": "/home/josek/Desktop/proyectos/ejercicios/01-containers/lemoncode-challenge/dotnet-stack/backend/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/josek/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
+          "dependencies": {
+            "MongoDB.Driver": {
+              "target": "Package",
+              "version": "[2.11.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.NETCore.App.Host.linux-x64",
+              "version": "[3.1.32, 3.1.32]"
+            }
+          ],
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/6.0.113/RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
