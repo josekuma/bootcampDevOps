@@ -1,17 +1,17 @@
 version: "3.8"
 services:
-  some-mongo:
-    image: mongo
+  some-mongo: #Especifica el --name del container
+    image: mongo #nombre de la imagen que usará el container
     ports:
-      - 27017:27017
-    environment:
+      - 27017:27017 #Abre los puertos 27017
+    environment: #Aqui se pondrán las variables de entorno
       MONGO_INITDB_ROOT_USERNAME: mongoadmin
       MONGO_INITDB_ROOT_PASSWORD: secret
-    networks:
+    networks: #El nombre de la network si utiliza alguna
       - lemoncode-challenge
-    volumes:
+    volumes: #El volumen que utilizará que en este caso es un named volume
       - mongo-volume-lemon:/data/db
-  topics-api:
+  topics-api: #El container del backend
     image: backend
     networks:
       - lemoncode-challenge
@@ -21,11 +21,11 @@ services:
       - lemoncode-challenge
     ports:
       - 8081:3000
-    tty: true
+    tty: true #Equivalente a poner el flag it en docker run
     
-networks:
+networks: #Para poder usar la network se define aquí aparte, aislado del resto
   lemoncode-challenge:
     driver: bridge
 
-volumes:
+volumes: #Lo mismo con el volume.
   mongo-volume-lemon:
