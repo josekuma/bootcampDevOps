@@ -14,7 +14,7 @@ pipeline {
         }
         stage('Compile') {
             steps {
-                    dir($WORKSPACE/jenkins-resources/calculator/){
+                    dir($WORKSPACE){
                     sh './gradlew compileJava'
 
                     }
