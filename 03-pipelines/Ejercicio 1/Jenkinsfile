@@ -4,11 +4,13 @@ pipeline {
         stage('Checkout') {
             steps{
             checkout scmGit(branches: [[name: '*/master']], userRemoteConfigs: [[url: 'https://github.com/josekuma/bootcampDevOps.git']]) 
-             ws: '/03-pipelines/Ejercicio 1/jenkins-resources/calculator'
 
          
             }
+            steps{
+                            ws: '/03-pipelines/Ejercicio 1/jenkins-resources/calculator'
 
+            }
         }
         stage('Compile') {
             steps {
