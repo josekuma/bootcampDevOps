@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps{
-            checkout scmGit(branches: [[name: '*/master']], extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: '/03-pipelines/Ejercicio 1/jenkins-resources/']], userRemoteConfigs: [[url: 'https://github.com/josekuma/bootcampDevOps.git']]) 
+            checkout scmGit(branches: [[name: '*/master']], extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: '/03-pipelines/Ejercicio 1/jenkins-resources/calculator']], userRemoteConfigs: [[url: 'https://github.com/josekuma/bootcampDevOps.git']]) 
 
 
          
@@ -12,15 +12,15 @@ pipeline {
         }
         stage('Compile') {
             steps {
-                withGradle{
-                                    sh 'gradlew compileJava'
+                
+                    sh './gradlew compileJava'
 
-                }
+            
             }
         }
         stage('Unit Tests') {
             steps {
-                sh 'gradlew test'
+                sh './gradlew test'
             }
         }
     }
