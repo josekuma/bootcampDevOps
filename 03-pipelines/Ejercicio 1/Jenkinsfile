@@ -3,11 +3,17 @@ pipeline {
     stages {
         stage('Checkout') {
             steps{
-            checkout scm: [$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false,
-            extensions: [], submoduleCfg: [],
-            userRemoteConfigs: [[
-            url: 'https://github.com/josekuma/bootcampDevOps.git']]], customWorkspace: "${WORKSPACE}/03-pipelines/Ejercicio 1/jenkins-resources/"
+            checkout([
+            $class: 'GitSCM', 
+            branches: [[name: '*/master']], 
+            doGenerateSubmoduleConfigurations: false, 
+            extensions: [], 
+            submoduleCfg: [], 
+            userRemoteConfigs: [[url: 'https://github.com/josekuma/bootcampDevOps.git']]],
+            customWorkspace: "${WORKSPACE}/03-pipelines/Ejercicio 1/jenkins-resources/")   
 
+
+         
             }
 
         }
