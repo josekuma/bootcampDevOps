@@ -12,7 +12,10 @@ pipeline {
         }
         stage('Compile') {
             steps {
-                sh 'gradlew compileJava'
+                withGradle{
+                                    sh 'gradlew compileJava'
+
+                }
             }
         }
         stage('Unit Tests') {
