@@ -11,7 +11,7 @@ checkout scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfig
         }
         stage('Compile') {
             steps {
-                    dir('/03-pipelines/Ejercicio 1/jenkins-resources/calculator/'){
+                    dir('/bootcampDevOps/03-pipelines/Ejercicio 1/jenkins-resources/calculator/'){
                     sh './gradlew compileJava'
 
                     }
