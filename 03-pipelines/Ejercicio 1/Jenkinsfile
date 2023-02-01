@@ -14,9 +14,8 @@ pipeline {
         stage('Compile') {
             steps {
                     dir('/03-pipelines/Ejercicio 1/jenkins-resources/calculator/'){
-                        sh 
-                        '''
-                        ls
+                        sh  '''
+                        ls -a
                          chmod +x gradlew
                           ./gradlew compileJava
                         '''
