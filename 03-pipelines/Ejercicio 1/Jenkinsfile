@@ -6,7 +6,7 @@ pipeline {
                 checkout scmGit(branches: [[name: '*/master']],
                 extensions: [], 
                 userRemoteConfigs: [[url: 'https://github.com/josekuma/bootcampDevOps.git']])
-                cd "./03-pipelines/Ejercicio 1/jenkins-resources/calculator/"
+                sh 'cd "./03-pipelines/Ejercicio 1/jenkins-resources/calculator/"'
 
          
             }
@@ -26,7 +26,7 @@ pipeline {
         }
         stage('Unit Tests') {
             steps {
-                        
+
                          sh './gradlew test'
                  
             }
