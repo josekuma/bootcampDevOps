@@ -15,8 +15,7 @@ pipeline {
             steps {
                     
                         sh  '''
-                        echo $WORKSPACE
-                        ls -a
+                         cd ./03-pipelines/Ejercicio 1/jenkins-resources/calculator/
                          chmod +x gradlew
                           ./gradlew compileJava
                         '''
