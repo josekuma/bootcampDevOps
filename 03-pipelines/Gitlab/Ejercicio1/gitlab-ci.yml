@@ -1,0 +1,54 @@
+stages: #Se nombran todos los stages en orden que va a ver
+    - maven:build
+    - maven:test
+    - docker:build
+    - deploy
+maven:build: #Nombre del job que puede ser cualquiera
+    image: maven:3.6.3-jdk-8-slim #Se descarga una imagen de maven de DockerHub para poder correr maven desde un container
+    stage: maven:build #Se nombra el stage
+    script: #Aqui todos los comandos que se ejecutaran en el stage
+        - mvn clean package
+    artifacts: #Estos son archivos resultantes del anterior comando, que se guardan en Gitlab para ser utilizados luego en otro job
+
+        when: on_success # Estos artifacts se guardan si el script anterior no da fallo.
+        paths:
+            - "target/*.jar" #La ruta relativa de los artefactos.
+
+maven:test:
+    image: maven:3.6.3-jdk-8-slim
+    stage: maven:test #Stage de testing que ademas usa la misma imagen
+    dependencies:
+        - maven:build
+    script:
+        - mvn verify
+    artifacts:
+        when: on_success
+        reports:
+            junit: #Al igual que el anterior pero guarda un report de como han ido los tests en un xml
+                - target/surefire-reports/TEST-*.xml
+
+docker:build:
+    image: docker:latest #Aqui dockerizamos la aplicacion y la pusheamos al container registry de Gitlab
+
+    services:
+    - docker:dind #Le tenemos que decir que usaremos el docker-in-docker para poder ejecutar comandos de docker
+
+    stage: docker:build
+    before_script:
+        - docker login -u $CI_REGISTRY_USER -p $CI_JOB_TOKEN $CI_REGISTRY/$CI_PROJECT_PATH #Antes de registrarnos tenemos que logearnos en el registry y se usan variables globales porque tanto como el user como el token son los de por defecto de Gitlab
+    script:
+        - echo $CI_REGISTRY $CI_REGISTRY_USER $CI_REGISTRY_PASSWORD #Mostramos esas variables por pantalla solo por mero motivo informativo
+        - docker build -t $CI_REGISTRY/$CI_PROJECT_PATH:$CI_COMMIT_SHA . #Creamos la imagen en base a nuestro repositorio y le ponemos de tag un hash del commit para ser inequivocamente identificados a nivel mundial
+        - docker push $CI_REGISTRY/$CI_PROJECT_PATH:$CI_COMMIT_SHA #Pusheamos y guardamos esa imagen en nuestro registry
+
+deploy: #Esta fase sirve para deplegar nuestra aplicacion basandones en docker en nuestro localhost
+    image: docker:latest
+
+    services:
+    - docker:dind
+    stage: deploy
+    before_script:
+        - docker login -u $CI_REGISTRY_USER -p $CI_JOB_TOKEN $CI_REGISTRY/$CI_PROJECT_PATH
+        - if [[$(docker ps --filter "name=springapp" --format '{{.Names}}') == "springapp"]]; then docker rm -f springapp; else echo "No existe"; fi #Aqui basicamente te dice que si ya existe un container con el nombre de springapp que lo borre para posteriormente crear otro
+    script:
+        - docker run --name "springapp" -d -p 8082:8080 $CI_REGISTRY/$CI_PROJECT_PATH:$CI_COMMIT_SHA #Runeamos la misma imagen que creamos antes en un container
