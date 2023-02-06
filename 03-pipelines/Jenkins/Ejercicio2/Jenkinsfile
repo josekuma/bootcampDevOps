@@ -1,7 +1,7 @@
 pipeline {
     agent {
         docker {
-            image 'gradle:6.6.1-jre14-openj9'
+            image 'gradle:6.6.1-jre14-openj9' // Especificamos la imagen de Docker que vamos a usar
         }
     }
     stages {
@@ -16,7 +16,7 @@ pipeline {
         }
         stage('Compile') {
             steps {
-                dir("$WORKSPACE/Ejercicio1/jenkins-resources/calculator"){
+                dir("./03-pipelines/Ejercicio 1/jenkins-resources/calculator/"){ 
                  sh  '''
                 chmod +x gradlew
                 gradle compileJava
@@ -28,7 +28,7 @@ pipeline {
         stage('Unit Tests') {
             steps {
 
-                dir("$WORKSPACE/Ejercicio1/jenkins-resources/calculator"){
+                dir("./03-pipelines/Ejercicio 1/jenkins-resources/calculator/"){
                 sh  '''
                 chmod +x gradlew
                 gradle test

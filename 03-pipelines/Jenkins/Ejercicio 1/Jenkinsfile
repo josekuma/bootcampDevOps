@@ -1,7 +1,7 @@
 pipeline {
-    agent any
+    agent any // Cualquier maquina podrá ejecutarlo
     stages {
-        stage('Checkout') {
+        stage('Checkout') { /* Este codigo de checkout lo sacamos mediante un Snippets de Jenkins*/
             steps{
                 checkout scmGit(branches: [[name: '*/master']],
                 extensions: [], 
@@ -11,11 +11,12 @@ pipeline {
             }
 
         }
-        stage('Compile') {
+        stage('Compile') { // Este es el stage Compile que sirve para compilar el codigo de java mediante Gradle
             steps {
-                
+                /* Tenemos que hacer un cd a la ruta relativa de nuestro repo para encontrar el source de nuestra app, justo donde se encuentran nuestros archivos gradle.
+                Lo del chmod es para darle permisos de ejecucion en caso de que no los tenga */
                     sh  '''
-                        cd "./03-pipelines/Ejercicio 1/jenkins-resources/calculator/"
+                        cd "./03-pipelines/Ejercicio 1/jenkins-resources/calculator/" 
                         chmod +x gradlew
                         ./gradlew compileJava
                     '''
@@ -25,7 +26,7 @@ pipeline {
             }
         }
         stage('Unit Tests') {
-            steps {
+            steps { // Esta fase es para hacer testing de nuestra app
 
                          sh '''
                          cd "./03-pipelines/Ejercicio 1/jenkins-resources/calculator/"
