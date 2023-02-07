@@ -83,13 +83,13 @@
 
 ### Comandos usados
 
-    1) Creamos en la carpeta donde estan las carpetas backend y frontend el siguiente fichero docker-compose.yml
-    2) En el escribimos el codigo de yml que viene esxplicado cada uno en comentarios dentro de el, y la versión preferiblemente la maás moderna o la que funcione mejor.
-    3) Luego para montar los containers se usa
-      
-      `docker compose up`
-      
-    4) Y para destruirlos, o Crtl+C, o 
-     
-     `docker compose down`
+  1) Creamos en la carpeta donde estan las carpetas backend y frontend el siguiente fichero docker-compose.yml
+  2) En el escribimos el codigo de yml que viene esxplicado cada uno en comentarios dentro de el, y la versión preferiblemente la maás moderna o la que funcione mejor.
+  3) Luego para montar los containers se usa
+
+    `docker compose up`
+
+  4) Y para destruirlos, o Crtl+C, o 
+
+   `docker compose down`
   
