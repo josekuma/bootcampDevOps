@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: mypv
+spec:
+  storageClassName: storageej2
+  capacity:
+    storage: 1Gi #Campacidad del PV que es de 1 Giga
+  accessModes:
+    - ReadWriteOnce #Quiere decir que solo un nodo a la vez puede utilizar el volumen a la vez para escribir o leer
+  hostPath:
+    path: /data/pv001 #Indica el path dentro del nodo del PersistentVolume

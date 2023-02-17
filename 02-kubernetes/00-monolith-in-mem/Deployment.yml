@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: todo
+spec:
+  selector:
+    matchLabels:
+      app: todo
+  template:
+    metadata:
+      labels:
+        app: todo
+    spec:
+      containers:
+      - name: todo-web
+        image: josegguerrer/todo-app:latest
+        env:
+        - name: NODE_ENV
+          value: production
+        - name: PORT
+          value: "3000"
+

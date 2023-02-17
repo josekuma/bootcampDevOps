@@ -1,0 +1,8 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: storageej2
+provisioner: k8s.io/minikube-hostpath
+reclaimPolicy: Retain # Indica que cuando se borra el recurso que reclama la PV, esta se mantedrá con todos sus datos.
+volumeBindingMode: Immediate #Indica que el volumen será asignado inmediatamente al nodo en el que se solicita el volumen,
+                             #por defecto es este valor, pero se pone como a modo informativo.

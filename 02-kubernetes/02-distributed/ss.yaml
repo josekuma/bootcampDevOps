@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: ss
+spec:
+  selector:
+    matchLabels:
+      app: ss
+  serviceName: ss
+  template:
+    metadata:
+      labels:
+        app: ss
+    spec:
+      volumes:
+      - name: my-volume
+        persistentVolumeClaim:
+          claimName: mypvc
+      containers:
+      - image: postgres:10.4
+        name: postgres
+        ports:
+        - containerPort: 5432
+        envFrom:
+        - configMapRef:
+            name: cm-bd
+        volumeMounts:
+        - name: my-volume
+          mountPath: /var/lib/postgresql/data
